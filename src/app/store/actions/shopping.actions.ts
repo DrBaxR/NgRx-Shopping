@@ -1,4 +1,4 @@
-import { Action } from "@ngrx/store";
+import { Action, createAction, props } from "@ngrx/store";
 import { ShoppingItem } from "../models/shopping-item.model";
 
 export enum ShoppingActionTypes {
@@ -13,64 +13,108 @@ export enum ShoppingActionTypes {
     DELETE_ITEM_FAILURE = '[SHOPPING] Delete Item Failure'
 }
 
-export class LoadShoppingAction implements Action {
-    readonly type = ShoppingActionTypes.LOAD_SHOPPING;
-}
+// export class LoadShoppingAction implements Action {
+//     readonly type = ShoppingActionTypes.LOAD_SHOPPING;
+// }
 
-export class LoadShoppingSuccessAction implements Action {
-    readonly type = ShoppingActionTypes.LOAD_SHOPPING_SUCCESS;
+export const loadShoppingAction = createAction(
+    ShoppingActionTypes.LOAD_SHOPPING
+);
 
-    constructor(public payload: Array<ShoppingItem>) { }
-}
+// export class LoadShoppingSuccessAction implements Action {
+//     readonly type = ShoppingActionTypes.LOAD_SHOPPING_SUCCESS;
 
-export class LoadShoppingFailureAction implements Action {
-    readonly type = ShoppingActionTypes.LOAD_SHOPPING_FAILURE;
+//     constructor(public payload: Array<ShoppingItem>) { }
+// }
 
-    constructor(public payload: Error) { }
-}
+export const loadShoppingSuccessAction = createAction(
+    ShoppingActionTypes.LOAD_SHOPPING_SUCCESS,
+    props<{ list: Array<ShoppingItem> }>()
+);
 
-export class AddItemAction implements Action {
-    readonly type = ShoppingActionTypes.ADD_ITEM;
+// export class LoadShoppingFailureAction implements Action {
+//     readonly type = ShoppingActionTypes.LOAD_SHOPPING_FAILURE;
 
-    constructor(public payload: ShoppingItem) { }
-}
+//     constructor(public payload: Error) { }
+// }
 
-export class AddItemSuccessAction implements Action {
-    readonly type = ShoppingActionTypes.ADD_ITEM_SUCCESS;
+export const loadShoppingFailureAction = createAction(
+    ShoppingActionTypes.LOAD_SHOPPING_FAILURE,
+    props<{ error: Error }>()
+);
 
-    constructor(public payload: ShoppingItem) { }
-}
+// export class AddItemAction implements Action {
+//     readonly type = ShoppingActionTypes.ADD_ITEM;
 
-export class AddItemFailureAction implements Action {
-    readonly type = ShoppingActionTypes.ADD_ITEM_FAILURE;
+//     constructor(public payload: ShoppingItem) { }
+// }
 
-    constructor(public payload: Error) { }
-}
+export const addItemAction = createAction(
+    ShoppingActionTypes.ADD_ITEM,
+    props<{ item: ShoppingItem }>()
+);
 
-export class DeleteItemAction implements Action {
-    readonly type = ShoppingActionTypes.DELETE_ITEM;
+// export class AddItemSuccessAction implements Action {
+//     readonly type = ShoppingActionTypes.ADD_ITEM_SUCCESS;
 
-    constructor(public payload: string) { }
-}
+//     constructor(public payload: ShoppingItem) { }
+// }
 
-export class DeleteItemSuccessAction implements Action {
-    readonly type = ShoppingActionTypes.DELETE_ITEM_SUCCESS;
+export const addItemSuccessAction = createAction(
+    ShoppingActionTypes.ADD_ITEM_SUCCESS,
+    props<{ item: ShoppingItem }>()
+);
 
-    constructor(public payload: string) { }
-}
+// export class AddItemFailureAction implements Action {
+//     readonly type = ShoppingActionTypes.ADD_ITEM_FAILURE;
 
-export class DeleteItemFailureAction implements Action {
-    readonly type = ShoppingActionTypes.DELETE_ITEM_FAILURE;
+//     constructor(public payload: Error) { }
+// }
 
-    constructor(public payload: Error) { }
-}
+export const addItemFailureAction = createAction(
+    ShoppingActionTypes.ADD_ITEM_FAILURE,
+    props<{ error: Error }>()
+);
 
-export type ShoppingAction = AddItemAction |
-  AddItemSuccessAction |
-  AddItemFailureAction |
-  DeleteItemAction |
-  DeleteItemSuccessAction |
-  DeleteItemFailureAction |
-  LoadShoppingAction |
-  LoadShoppingFailureAction |
-  LoadShoppingSuccessAction
+// export class DeleteItemAction implements Action {
+//     readonly type = ShoppingActionTypes.DELETE_ITEM;
+
+//     constructor(public payload: string) { }
+// }
+
+export const deleteItemAction = createAction(
+    ShoppingActionTypes.DELETE_ITEM,
+    props<{ id: string }>()
+);
+
+// export class DeleteItemSuccessAction implements Action {
+//     readonly type = ShoppingActionTypes.DELETE_ITEM_SUCCESS;
+
+//     constructor(public payload: string) { }
+// }
+
+export const deleteItemSuccessAction = createAction(
+    ShoppingActionTypes.DELETE_ITEM_SUCCESS,
+    props<{ id: string }>()
+);
+
+// export class DeleteItemFailureAction implements Action {
+//     readonly type = ShoppingActionTypes.DELETE_ITEM_FAILURE;
+
+//     constructor(public payload: Error) { }
+// }
+
+export const deleteItemFailureAction = createAction(
+    ShoppingActionTypes.DELETE_ITEM_FAILURE,
+    props<{ error: Error }>()
+);
+
+// export type ShoppingAction = AddItemAction |
+//     AddItemSuccessAction |
+//     AddItemFailureAction |
+//     DeleteItemAction |
+//     DeleteItemSuccessAction |
+//     DeleteItemFailureAction |
+//     LoadShoppingAction |
+//     LoadShoppingFailureAction |
+//     LoadShoppingSuccessAction
