@@ -1,27 +1,16 @@
-# NgrxShoppingList
+# What is this?
+A basic example of a shopping list application made using NgRx.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+# Who made this?
+**NOT ME!** I just followed [this](https://developer.school/introduction-to-ngrx-store/) and [this](https://developer.school/introduction-to-ngrx-effects/) articles made by [Paul Halliday](https://twitter.com/PaulHalliday_io), which are tutorials about @ngrx/store and @ngrx/effects. I just replaced the ```@Effect``` decorators with the ```createEffect()``` fucntion, since the decorators were were deprecated.
 
-## Development server
+# What can I find here?
+Two tags: 
+- one for an example of using @ngrx/store (simple)
+- one for an example of using @ngrx/effects (a bit more complicated)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# What can't I find here?
+Anything that does not appear in the _**What can I find here?**_ section.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Why does this exist?
+Idk ¯\\\_(ツ)\_/¯, i just wanted to throw this on Github, since i am 100% sure that if i keep this repo locally i am going to lose it (also, it might help someone; _who knows?_).
