@@ -6,6 +6,7 @@ import { ShoppingItem } from './store/models/shopping-item.model';
 
 import { v4 as uuid } from 'uuid';
 import * as ShoppingActions from './store/actions/shopping.actions';
+import { selectAllItems, selectError, selectLoading } from './store/selectors/shopping.selectors';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import * as ShoppingActions from './store/actions/shopping.actions';
 })
 export class AppComponent implements OnInit {
 
-  shoppingItems$: Observable<Array<ShoppingItem>>;
+  shoppingItems$: Observable<ShoppingItem[]>;
   loading$: Observable<boolean>;
   error$: Observable<Error>;
   newShoppingItem: ShoppingItem = { id: '', name: '' };
@@ -24,9 +25,9 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shoppingItems$ = this.store.select(store => store.shopping.list);
-    this.loading$ = this.store.select(store => store.shopping.loading);
-    this.error$ = this.store.select(store => store.shopping.error);
+    this.shoppingItems$ = this.store.select(selectAllItems);
+    this.loading$ = this.store.select(selectLoading);
+    this.error$ = this.store.select(selectError);
 
     this.store.dispatch(ShoppingActions.loadShoppingAction());
   }
