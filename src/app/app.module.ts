@@ -8,9 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { ShoppingEffects } from './store/effects/shopping.effects';
 
-import * as fromShopping from './store/reducers/shopping.reducer';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './data/entity-metadata';
+import { defaultDataServiceConfig } from './data/data-service.config';
+
+
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import * as fromShopping from './store/reducers/shopping.reducer';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      shopping: fromShopping.reducer
-    }),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([ShoppingEffects])
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DefaultDataServiceConfig,
+      useValue: defaultDataServiceConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from './store/models/app-state.model';
 import { ShoppingItem } from './store/models/shopping-item.model';
 
 import { v4 as uuid } from 'uuid';
-import * as ShoppingActions from './store/actions/shopping.actions';
-import { selectAllItems, selectError, selectLoading } from './store/selectors/shopping.selectors';
+import { ShoppingItemService } from './services/shopping-item.service';
 
 @Component({
   selector: 'app-root',
@@ -21,26 +18,25 @@ export class AppComponent implements OnInit {
   newShoppingItem: ShoppingItem = { id: '', name: '' };
 
   constructor(
-    private store: Store<AppState>
-  ) { }
+    private shoppingItemService: ShoppingItemService,
+  ) {
+    this.shoppingItems$ = this.shoppingItemService.entities$;
+    this.loading$ = this.shoppingItemService.loading$;
+  }
 
   ngOnInit() {
-    this.shoppingItems$ = this.store.select(selectAllItems);
-    this.loading$ = this.store.select(selectLoading);
-    this.error$ = this.store.select(selectError);
-
-    this.store.dispatch(ShoppingActions.loadShoppingAction());
+    this.shoppingItemService.getAll();
   }
 
   addItem() {
     this.newShoppingItem.id = uuid();
 
-    this.store.dispatch(ShoppingActions.addItemAction({ item: this.newShoppingItem }));
+    this.shoppingItemService.add(this.newShoppingItem);
 
     this.newShoppingItem = { id: '', name: '' };
   }
 
   deleteItem(id: string) {
-    this.store.dispatch(ShoppingActions.deleteItemAction({ id: id }));
+    this.shoppingItemService.delete(id);
   }
 }
