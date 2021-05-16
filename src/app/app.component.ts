@@ -4,8 +4,8 @@ import { ShoppingItem } from './store/models/shopping-item.model';
 
 import { v4 as uuid } from 'uuid';
 import { ShoppingItemService } from './services/shopping-item.service';
+import { Store } from '@ngrx/store';
 import { EntityAction, EntityActionFactory, EntityOp } from '@ngrx/data';
-import { ShoppingItemDataService } from './services/shopping-item-data.service';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +19,42 @@ export class AppComponent implements OnInit {
   error$: Observable<Error>;
   newShoppingItem: ShoppingItem = { id: '', name: '' };
 
+  private myCustomAction: EntityAction<ShoppingItem>;
+
   constructor(
     private shoppingItemService: ShoppingItemService,
-    private shoppingItemDataService: ShoppingItemDataService
+    private entityActionFactory: EntityActionFactory,
+    private store: Store
   ) {
     this.shoppingItems$ = this.shoppingItemService.entities$;
     this.loading$ = this.shoppingItemService.loading$;
   }
 
   ngOnInit() {
-    this.shoppingItemService.getAll();
+    this.myCustomAction = this.createAction();
+
+    this.store.dispatch(this.myCustomAction);
+    // this.shoppingItemService.getAll();
+  }
+
+  createAction(): EntityAction<ShoppingItem> {
+    // this one is equivalent with shoppingService.getAll()
+    // can check to see in the redux Chrome plugin that the tag is the one set below
+    return this.entityActionFactory.create<ShoppingItem>(
+      'ShoppingItem',
+      EntityOp.QUERY_ALL,
+      null,
+      { tag: 'My Custom Action' }
+    );
+
+    // alternative way to create action by hand without using factory
+    // return {
+    //   payload: {
+    //     entityName: 'ShoppingItem',
+    //     entityOp: EntityOp.QUERY_ALL
+    //   },
+    //   type: '[Custom Action] my/custom/type'
+    // }
   }
 
   addItem() {
