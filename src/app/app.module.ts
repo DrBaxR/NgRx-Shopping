@@ -9,9 +9,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
-import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { DefaultDataServiceConfig, EntityDataModule, EntityDataService } from '@ngrx/data';
 import { entityConfig } from './data/entity-metadata';
 import { defaultDataServiceConfig } from './data/data-service.config';
+import { ShoppingItemDataService } from './services/shopping-item-data.service';
 
 
 
@@ -36,4 +37,11 @@ import { defaultDataServiceConfig } from './data/data-service.config';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(
+    entityDataService: EntityDataService,
+    shoppingItemService: ShoppingItemDataService
+  ) {
+    entityDataService.registerService('ShoppingItem', shoppingItemService);
+  }
+}

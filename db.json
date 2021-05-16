@@ -1,5 +1,5 @@
 {
-  "shopping": [
+  "shoppingItems": [
     {
       "id": "1b8f5035-c2f9-42ac-87d1-52c290bd2de5",
       "name": "sdfg"
@@ -7,6 +7,30 @@
     {
       "id": "344f6513-ae51-474c-b874-c4573472ee28",
       "name": "asd"
+    },
+    {
+      "id": "66aacc55-e059-4428-b7a1-819c7d7859f1",
+      "name": "sdfsdf"
+    },
+    {
+      "id": "4f671882-2c44-4722-abe0-1ced4b93ef77",
+      "name": "werwer"
+    },
+    {
+      "id": "809c1021-99fb-41df-9363-2bbff8e1bff4",
+      "name": "dfghfgh"
+    },
+    {
+      "id": "4a43e408-8858-4640-8e2d-151d16c3a9b8",
+      "name": "cvbcvb"
+    },
+    {
+      "id": "cf696f95-c642-4fc2-8720-d47e0604a53b",
+      "name": "asdasd"
+    },
+    {
+      "id": "ce3c44b2-509c-4f22-b59a-ae71c14cedea",
+      "name": "qerwer"
     }
   ]
 }

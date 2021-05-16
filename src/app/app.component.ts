@@ -4,6 +4,8 @@ import { ShoppingItem } from './store/models/shopping-item.model';
 
 import { v4 as uuid } from 'uuid';
 import { ShoppingItemService } from './services/shopping-item.service';
+import { EntityAction, EntityActionFactory, EntityOp } from '@ngrx/data';
+import { ShoppingItemDataService } from './services/shopping-item-data.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private shoppingItemService: ShoppingItemService,
+    private shoppingItemDataService: ShoppingItemDataService
   ) {
     this.shoppingItems$ = this.shoppingItemService.entities$;
     this.loading$ = this.shoppingItemService.loading$;

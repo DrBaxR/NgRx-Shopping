@@ -8,6 +8,6 @@ import { ShoppingItem } from '../store/models/shopping-item.model';
 export class ShoppingItemService extends EntityCollectionServiceBase<ShoppingItem> {
 
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) { 
-    super('Shoppingz', serviceElementsFactory);
+    super('ShoppingItem', serviceElementsFactory);
   }
 }
